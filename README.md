@@ -1,13 +1,30 @@
 # Artify-photographs
 The idea is to turn a photograph of a scene or a person, and process it to create something that looks more like it has been painted as an artwork, and not a photo.
 
-Objective: “looks more like it has been painted as an artwork, and not a photo.”
-    - What do artworks usually look like? What are the key characteristics
-    The method should be similar to actual painting process, ans artists do the painting bit by bit with the brush.
-Assumptions on how to replicate characteristics of artworks
-    - Assumption: using dots or other shapes like rectangles make an image seem more like an art work because art has a “lower resolution”
-    - Assumption: using shapes of different sizes and overlaying each other will give it a more realistic look.
-- 3 different tests:
-    1. Applying Rectangles 
-    2. Applying Dots
-    3. Combining Dots & Rectangles
+Assumptions
+Artworks often show visible strokes and lower detail.
+Using dots and rectangles helps mimic painting.
+Layering small shapes over large ones gives more realism.
+
+Objective
+Create images that appear painted by:
+reducing resolution,
+using brush-like shapes,
+layering shapes of different sizes.
+
+Approach
+1. Rectangles
+Rebuild the image using colored rectangles.
+Mimics large brush strokes.
+
+2. Dots
+Rebuild the image using colored dots.
+Creates a stippled or pointillism effect.
+
+3. Combined
+Layer rectangles (base) and dots (detail).
+Produces a richer painterly texture.
+
+Folder Structure
+
+How to run
