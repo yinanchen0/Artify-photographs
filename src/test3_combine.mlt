@@ -1,0 +1,115 @@
+%%
+clc; clear; close all;
+
+% Read the original image
+img = imread('trump.png'); % Replace with your image file
+[rows, cols, channels] = size(img);
+
+% Define the range for random shape sizes
+minWidth = 10;  maxWidth = 20;  % Rectangle width
+minHeight = 20; maxHeight = 30; % Rectangle height
+minRadius = 5;  maxRadius = 10; % Circle radius
+
+% Initialize the output image
+outputImg = img;
+
+% Detect edges and calculate their direction
+edgeMask = false(rows, cols);
+edgeDirection = zeros(rows, cols); % Store edge direction in degrees
+
+for channel = 1:channels
+    % Use Sobel filters for better gradient detection
+    gradientX = imfilter(double(img(:,:,channel)), [-1 0 1; -2 0 2; -1 0 1]);
+    gradientY = imfilter(double(img(:,:,channel)), [-1 -2 -1; 0 0 0; 1 2 1]);
+    
+    % Calculate edge magnitude
+    edgeMagnitude = sqrt(gradientX.^2 + gradientY.^2);
+    channelEdge = edgeMagnitude > 20; % Edge threshold
+    
+    % Calculate edge direction in degrees
+    channelDirection = atan2d(gradientY, gradientX);
+    
+    % Update edge mask
+    edgeMask = edgeMask | channelEdge;
+    
+    % Store direction where edges are detected
+    edgeDirection(channelEdge) = channelDirection(channelEdge);
+end
+
+% Generate grid points across the image
+rowStep = min(minWidth, minRadius * 2);
+colStep = min(minWidth, minRadius * 2);
+[Xgrid, Ygrid] = meshgrid(1:colStep:cols, 1:rowStep:rows);
+shapeCenters = [Ygrid(:), Xgrid(:)];
+
+% Loop to place rectangles and circles
+alpha = 0.5; % Transparency level (50%)
+
+for i = 1:size(shapeCenters, 1)
+    row = shapeCenters(i, 1);
+    col = shapeCenters(i, 2);
+    
+    % Check if point is within image bounds
+    % Check if point is within image bounds
+    if row > rows || col > cols || row < 1 || col < 1
+        continue;
+    end
+    % Adjust rectangle orientation based on edge direction
+    if edgeMask(row, col)
+        % Use the exact edge direction
+        theta = edgeDirection(row, col);
+        
+        % Add a small random variation to avoid too uniform appearance
+        theta = theta + randi([-10, 10]);
+    else
+        % Random rotation elsewhere
+        theta = randi([0, 360]);
+    end
+    
+    if rand > 0.5
+        % Random rectangle
+        shapeWidth = randi([minWidth, maxWidth]);
+        shapeHeight = randi([minHeight, maxHeight]);
+        halfWidth = floor(shapeWidth / 2);
+        halfHeight = floor(shapeHeight / 2);
+        
+        [X, Y] = meshgrid(1:cols, 1:rows);
+        X_rot = (X - col) * cosd(theta) + (Y - row) * sind(theta);
+        Y_rot = -(X - col) * sind(theta) + (Y - row) * cosd(theta);
+        mask = (abs(X_rot) <= halfWidth) & (abs(Y_rot) <= halfHeight);
+       
+        
+    else
+        % Random circle
+        radius = randi([minRadius, maxRadius]);
+        [X, Y] = meshgrid(1:cols, 1:rows);
+        mask = ((X - col).^2 + (Y - row).^2) <= radius^2;
+        
+        % Radial gradient for circular shape
+        dist = sqrt((X - col).^2 + (Y - row).^2);
+        gradientMask = 1 - (dist / radius);
+        gradientMask(gradientMask < 0) = 0;
+    end
+    
+    % Compute the average color inside the shape
+    avgColor = zeros(1, 3);
+    for channel = 1:channels
+        pixelsInside = img(:,:,channel);
+        avgColor(channel) = mean(pixelsInside(mask));
+    end
+    
+    % Blend shape with original image using transparency
+    for channel = 1:channels
+        tempChannel = outputImg(:,:,channel);
+        tempChannel(mask) = (1 - alpha) * double(tempChannel(mask)) + ...
+                            alpha .* avgColor(channel);
+        outputImg(:,:,channel) = uint8(tempChannel);
+    end
+end
+
+% Display the result
+imshow(outputImg);
+title('Brush Effect with Transparency');
+
+% Save output (optional)
+imwrite(outputImg, 'output_brush_effect.png');
