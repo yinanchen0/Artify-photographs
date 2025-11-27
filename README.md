@@ -24,6 +24,7 @@ Creates a stippled or pointillism effect.
 3. Combined
 Layer rectangles (base) and dots (detail).
 Produces a richer painterly texture.
+overlap with orginal image with transparency.
 
 Folder Structure
 
