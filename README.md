@@ -26,5 +26,12 @@ Layer rectangles (base) and dots (detail).
 Produces a richer painterly texture.
 
 Folder Structure
+-Artify-photographs
+ -src
+   - test1_rectangles.m
+   - test2_dots.m
+   - test3_combined.m
+ -images
+   - Billie.png
+  
 
-How to run
