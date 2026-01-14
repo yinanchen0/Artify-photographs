@@ -1,6 +1,15 @@
 # Artify-photographs
 The idea is to turn a photograph of a scene or a person, and process it to create something that looks more like it has been painted as an artwork, and not a photo.
 
+# Outcome
+![Artify-photographs](examples/s3.png)
+![Artify-photographs](examples/r3.png
+![Artify-photographs](examples/s2.png)
+![Artify-photographs](examples/r2.png)
+![Artify-photographs](examples/s1.png)
+![Artify-photographs](examples/r1.png)
+
+
 Assumptions
 Artworks often show visible strokes and lower detail.
 Using dots and rectangles helps mimic painting.
@@ -37,5 +46,4 @@ Folder Structure
 
  -images
   - Billie.png
-  
 
