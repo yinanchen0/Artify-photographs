@@ -1,14 +1,26 @@
 # Artify-photographs
 The idea is to turn a photograph of a scene or a person, and process it to create something that looks more like it has been painted as an artwork, and not a photo.
 
-# Outcome
-![Artify-photographs](example/s3.jpg)
-![Artify-photographs](example/r3.jpg)
-![Artify-photographs](example/s2.jpg)
-![Artify-photographs](example/r2.jpg)
-![Artify-photographs](example/s1.jpg)
-![Artify-photographs](example/r1.jpg)
+## Outcome
 
+<table>
+  <tr>
+    <th>Original Image</th>
+    <th>After Effect Image</th>
+  </tr>
+  <tr>
+    <td><img src="example/s3.jpg" width="350"></td>
+    <td><img src="example/r3.jpg" width="350"></td>
+  </tr>
+  <tr>
+    <td><img src="example/s2.jpg" width="350"></td>
+    <td><img src="example/r2.jpg" width="350"></td>
+  </tr>
+  <tr>
+    <td><img src="example/s1.jpg" width="350"></td>
+    <td><img src="example/r1.jpg" width="350"></td>
+  </tr>
+</table>
 
 Assumptions
 Artworks often show visible strokes and lower detail.
