@@ -22,40 +22,28 @@ The idea is to turn a photograph of a scene or a person, and process it to creat
   </tr>
 </table>
 
-Assumptions
-Artworks often show visible strokes and lower detail.
-Using dots and rectangles helps mimic painting.
-Layering small shapes over large ones gives more realism.
+## Assumptions
+- Artistic paintings often exhibit visible brush strokes and reduced fine detail.
+- Simple geometric primitives (rectangles and dots) can approximate painterly textures.
+- Layering coarse and fine visual elements improves perceived realism.
 
-Objective
-Create images that appear painted by:
-reducing resolution,
-using brush-like shapes,
-layering shapes of different sizes.
+## Objective
+To generate images with a painterly appearance by:
+- reducing effective image resolution,
+- reconstructing images using brush-like geometric shapes,
+- layering shapes of different sizes with controlled transparency.
 
-Approach
-1. Rectangles
-Rebuild the image using colored rectangles.
-Mimics large brush strokes.
+## Approach
 
-2. Dots
-Rebuild the image using colored dots.
-Creates a stippled or pointillism effect.
+### Rectangle-Based Reconstruction
+The image is rebuilt using colored rectangles sampled from the original image.  
+This simulates large brush strokes and establishes the overall structure.
 
-3. Combined
-Layer rectangles (base) and dots (detail).
-Produces a richer painterly texture.
-overlap with orginal image with transparency.
+### Dot-Based Reconstruction
+The image is reconstructed using colored dots, creating a stippled or pointillist effect that enhances texture.
 
-Folder Structure
+### Combined Layered Method
+Rectangles are first used to form a coarse base layer, followed by dots to add finer details.  
+The generated layers are blended with the original image using transparency to produce a richer painterly effect.
 
--Artify-photographs
-
- -src
-   - test1_rectangles.m
-   - test2_dots.m
-   - test3_combined.m
-
- -images
-  - Billie.png
 
