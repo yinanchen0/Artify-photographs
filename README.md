@@ -2,12 +2,12 @@
 The idea is to turn a photograph of a scene or a person, and process it to create something that looks more like it has been painted as an artwork, and not a photo.
 
 # Outcome
-![Artify-photographs](examples/s3.jpg)
-![Artify-photographs](examples/r3.jpg)
-![Artify-photographs](examples/s2.jpg)
-![Artify-photographs](examples/r2.jpg)
-![Artify-photographs](examples/s1.jpg)
-![Artify-photographs](examples/r1.jpg)
+![Artify-photographs](example/s3.jpg)
+![Artify-photographs](example/r3.jpg)
+![Artify-photographs](example/s2.jpg)
+![Artify-photographs](example/r2.jpg)
+![Artify-photographs](example/s1.jpg)
+![Artify-photographs](example/r1.jpg)
 
 
 Assumptions
